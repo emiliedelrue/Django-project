@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Modifier le commentaire</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="author">Nom :</label>
+        <input type="text" name="author" id="author" value="{{ comment.author }}" required>
+        
+        <label for="text">Commentaire :</label>
+        <textarea name="text" id="text" required>{{ comment.text }}</textarea>
+        
+        <button type="submit">Enregistrer les modifications</button>
+        <a href="{% url 'post_detail' post.pk %}">Annuler</a>
+    </form>
+{% endblock %}

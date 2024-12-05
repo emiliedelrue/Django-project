@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Supprimer le commentaire</h1>
+    <p>Êtes-vous sûr de vouloir supprimer ce commentaire ?</p>
+    <blockquote>
+        <p>"{{ comment.text }}"</p>
+        <footer>— {{ comment.author }} le {{ comment.created_at }}</footer>
+    </blockquote>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmer la suppression</button>
+        <a href="{% url 'post_detail' post.pk %}">Annuler</a>
+    </form>
+{% endblock %}

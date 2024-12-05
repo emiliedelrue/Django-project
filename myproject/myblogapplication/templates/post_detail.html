@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <p>Posted on: {{ post.created_at }}</p>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in post.comment_set.all %}
+            <li>
+                {{ comment.author }}: {{ comment.text }} 
+                <a href="{% url 'edit_comment' post.pk comment.pk %}">Edit</a>
+                <a href="{% url 'delete_comment' post.pk comment.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+    <br><br>
+    <a href="{% url 'post_list' %}">Back to Blog List</a>
+{% endblock %}
